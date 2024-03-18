@@ -36,7 +36,7 @@ public class SignupActivity extends BaseActivity {
                 if (task.isSuccessful()) {
                     Log.i(TAG, "onComplete: ");
                     Toast.makeText(SignupActivity.this, "Account created successfully!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SignupActivity.this, MainActivity.class));
+                    startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                 } else {
                     Log.i(TAG, "failure: " + task.getException());
                     Toast.makeText(SignupActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
