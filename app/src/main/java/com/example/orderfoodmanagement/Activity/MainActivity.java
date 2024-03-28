@@ -44,6 +44,19 @@ public class MainActivity extends BaseActivity {
         initBestFood();
         initCategory();
         setVariable();
+
+        Intent intent = getIntent();
+        if(intent != null) {
+            String email = intent.getStringExtra("email");
+            String password = intent.getStringExtra("password");
+            if(email != null && password != null) {
+                // Nếu có dữ liệu, chuyển đến ProfileActivity và truyền dữ liệu email và password
+                Intent profileIntent = new Intent(MainActivity.this, ProfileActivity.class);
+                profileIntent.putExtra("email", email);
+                profileIntent.putExtra("password", password);
+                startActivity(profileIntent);
+            }
+        }
     }
 
     private void setVariable() {
@@ -51,6 +64,7 @@ public class MainActivity extends BaseActivity {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         });
+
 
         binding.searchBtn.setOnClickListener(v -> {
             String text = binding.searchEdt.getText().toString();
@@ -63,7 +77,21 @@ public class MainActivity extends BaseActivity {
         });
 
         binding.cartBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CartActivity.class)));
+
+        binding.txtviewall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListFoodsActivity.class);
+                startActivity(intent);
+            }
+        });
+}
+    public void onUserBtnClicked(View view) {
+        // Tạo Intent để chuyển đến ProfileActivity
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent); // Khởi động ProfileActivity
     }
+
 
     private void initBestFood() {
         DatabaseReference myRef = database.getReference("Foods");

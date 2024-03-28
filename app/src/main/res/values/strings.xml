@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">project162</string>
+    <string name="user_button_description">User Profile</string>
+
 </resources>
