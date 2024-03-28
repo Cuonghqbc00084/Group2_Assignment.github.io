@@ -2,6 +2,7 @@ package com.example.orderfoodmanagement.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 import android.widget.TextView;
 import com.example.orderfoodmanagement.R;
@@ -22,7 +23,7 @@ public class LoginActivity extends BaseActivity {
 
     private void setVariable() {
         binding.loginBtn.setOnClickListener(v -> {
-            String email=binding.userEdt.getText().toString();
+            String email=binding.emailEdt.getText().toString();
             String password=binding.passEdt.getText().toString();
             if(!email.isEmpty() && !password.isEmpty()){
                 mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, task -> {
@@ -34,12 +35,16 @@ public class LoginActivity extends BaseActivity {
                 });
             }else{
                 Toast.makeText(LoginActivity.this, "Please fill username and password", Toast.LENGTH_SHORT).show();
+
             }
         });
+
 
         TextView signUpTextView = findViewById(R.id.textView8);
         signUpTextView.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, SignupActivity.class));
         });
+
+
     }
 }
